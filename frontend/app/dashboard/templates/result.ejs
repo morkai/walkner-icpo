@@ -1,0 +1,8 @@
+<div class="dashboard-log">
+  <% log.forEach(function(logEntry) { %>
+  <p>
+    <time datetime="<%- logEntry.datetime %>"><%- logEntry.time %></time>
+    <span><%- logEntry.text %></span>
+  </p>
+  <% }) %>
+</div>

@@ -1,0 +1,33 @@
+<form class="dashboard-input <%- className %>" autocomplete="off">
+  <div id="<%- idPrefix %>-serviceTag" class="form-group dashboard-inputGroup" data-input="serviceTag">
+    <label for="<%- idPrefix %>-serviceTag-value"><%- t('dashboard', 'input:serviceTag') %></label>
+    <div class="dashboard-input-row">
+      <input id="<%- idPrefix %>-serviceTag-value" class="form-control" name="serviceTag" type="text" maxlength="16">
+      <span class="dashboard-input-status"><i class="fa fa-meh-o"></i></span>
+    </div>
+  </div>
+  <div id="<%- idPrefix %>-driver" class="form-group dashboard-inputGroup" data-input="driver">
+    <label for="<%- idPrefix %>-driver-value"><%- t('dashboard', 'input:driver') %></label>
+    <div class="dashboard-input-row">
+      <input id="<%- idPrefix %>-driver-value" class="form-control" name="driver" type="text" maxlength="12">
+      <span class="dashboard-input-status"><i class="fa fa-meh-o"></i></span>
+    </div>
+  </div>
+  <div id="<%- idPrefix %>-gprs" class="form-group dashboard-inputGroup" data-input="gprs">
+    <label for="<%- idPrefix %>-gprs-value"><%- t('dashboard', 'input:gprs') %></label>
+    <div class="dashboard-input-row">
+      <input id="<%- idPrefix %>-gprs-value" class="form-control" name="gprs" type="text" maxlength="12">
+      <span class="dashboard-input-status"><i class="fa fa-meh-o"></i></span>
+    </div>
+  </div>
+  <div id="<%- idPrefix %>-led" class="form-group dashboard-inputGroup" data-input="led">
+    <label for="<%- idPrefix %>-led-value"><%- t('dashboard', 'input:led') %></label>
+    <div class="dashboard-input-row">
+      <input id="<%- idPrefix %>-led-value" class="form-control" name="led" type="text" maxlength="25">
+      <span class="dashboard-input-status"><i class="fa fa-meh-o"></i></span>
+    </div>
+  </div>
+  <button class="btn btn-block btn-primary dashboard-input-program" type="submit"><%- t('dashboard', 'input:program') %></button>
+  <button class="btn btn-block btn-danger dashboard-input-cancel" type="submit"><%- t('dashboard', 'input:cancel') %></button>
+  <button class="btn <%- modeClassName %> dashboard-input-mode"><%- modeLabel %></button>
+</form>

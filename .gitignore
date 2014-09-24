@@ -1,0 +1,16 @@
+.idea/
+node_modules/
+build/
+frontend-build/
+config/installer.json
+config/license.ed.public.pem
+data/output.xml_
+data/settings.json
+data/db.sqlite3
+data/dev/
+data/input/drivers/*.xml
+data/input/gprs/*.xml
+data/input/orders/*.dat
+data/storage/*
+!data/storage/.keep
+data/verification/**/*.xml

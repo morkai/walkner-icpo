@@ -1,0 +1,35 @@
+{
+  "root": {
+    "msg:cancel:failure": "Failed to cancel the programming :(",
+    "msg:program:failure": "Failed to start the programming :(",
+
+    "focus:true": "Window active",
+    "focus:false": "Window inactive",
+    "license:error": "License error",
+
+    "input:serviceTag": "Service Tag label:",
+    "input:driver": "Driver label:",
+    "input:gprs": "GPRS label:",
+    "input:led": "LED board label:",
+    "input:program": "Program",
+    "input:cancel": "Cancel",
+    "input:mode:manual": "Manual mode",
+    "input:mode:auto": "Auto mode",
+
+    "error:format": "Invalid value format.",
+    "error:timeout:findFile": "Timeout while searching for the config file..",
+    "error:timeout:readFile": "Timeout while reading the config file.",
+    "error:notFound": "Could not find the config file.",
+    "error:findFile": "Failed to fined the config file.",
+    "error:findFile:duplicate": "Found more than one config file.",
+    "error:readFile": "Failed to read the config file.",
+    "error:writeFile": "Failed to copy the config file.",
+    "error:xml:parse": "Failed to parse the config file.",
+    "error:xml:structure": "Invalid config file structure.",
+    "error:data:gprs": "Unrecognized GPRS configuration.",
+    "error:data": "Invalid option: <code>{data}</code>",
+
+    "result:title": "Programming log"
+  },
+  "pl": true
+}

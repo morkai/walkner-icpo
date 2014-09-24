@@ -1,0 +1,46 @@
+<div class="well">
+  <form id="<%- idPrefix %>-form" class="filter-form history-filter">
+    <div class="form-group">
+      <label for="<%- idPrefix %>-from"><%- t('history', 'FILTER:from') %></label>
+      <input id="<%- idPrefix %>-from" class="form-control" name="from" type="datetime-local" placeholder="YYYY-MM-DD HH:mm">
+    </div><div
+      class="form-group">
+      <label for="<%- idPrefix %>-to"><%- t('history', 'FILTER:to') %></label>
+      <input id="<%- idPrefix %>-to" class="form-control" name="to" type="datetime-local" placeholder="YYYY-MM-DD HH:mm">
+    </div><div
+      class="form-group">
+      <label for="<%- idPrefix %>-serviceTag"><%- t('history', 'PROPERTY:serviceTag') %></label>
+      <input id="<%- idPrefix %>-serviceTag" class="form-control" name="serviceTag" type="text" maxlength="16" pattern="^P000[0-9]{12}$">
+    </div><div
+      class="form-group">
+      <label for="<%- idPrefix %>-driver"><%- t('history', 'PROPERTY:driver') %></label>
+      <input id="<%- idPrefix %>-driver" class="form-control" name="driver" type="text" maxlength="12" pattern="^[0-9]{12}$">
+    </div><div
+      class="form-group">
+      <label for="<%- idPrefix %>-gprs"><%- t('history', 'PROPERTY:gprs') %></label>
+      <input id="<%- idPrefix %>-gprs" class="form-control" name="gprs" type="text" maxlength="12" pattern="^[0-9]{12}$">
+    </div><div
+      class="form-group">
+      <label for="<%- idPrefix %>-led"><%- t('history', 'PROPERTY:led') %></label>
+      <input id="<%- idPrefix %>-led" class="form-control" name="led" type="text" maxlength="25" pattern="^.{12,25}$">
+    </div><div
+      class="form-group">
+      <label><%- t('history', 'PROPERTY:result') %></label>
+      <div class="btn-group filter-btn-group history-filter-result" data-toggle="buttons">
+        <label class="btn btn-default history-filter-success">
+          <input type="checkbox" name="result[]" value="success"> <%- t('history', 'FILTER:result:success') %>
+        </label>
+        <label class="btn btn-default history-filter-failure">
+          <input type="checkbox" name="result[]" value="failure"> <%- t('history', 'FILTER:result:failure') %>
+        </label>
+      </div>
+    </div><div
+      class="form-group">
+      <label for="<%- idPrefix %>-limit"><%- t('history', 'FILTER:limit') %></label>
+      <input id="<%- idPrefix %>-limit" class="form-control" name="limit" type="number" value="25" min="5" max="100" step="1">
+    </div><div
+      class="form-group filter-actions">
+      <input type="submit" class="btn btn-primary" value="<%= t('history', 'FILTER:submit') %>">
+    </div>
+  </form>
+</div>

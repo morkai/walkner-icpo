@@ -1,0 +1,32 @@
+{
+  "msg:cancel:failure": "Nie udało się anulować programowania :(",
+  "msg:program:failure": "Nie udało się rozpocząć programowania :(",
+
+  "focus:true": "Okno aktywne",
+  "focus:false": "Okno nieaktywne",
+  "license:error": "Błąd licencji",
+
+  "input:serviceTag": "Etykieta Service Tag:",
+  "input:driver": "Etykieta drivera:",
+  "input:gprs": "Etykieta GPRS:",
+  "input:led": "Etykieta płytki LED:",
+  "input:program": "Programuj",
+  "input:cancel": "Anuluj",
+  "input:mode:manual": "Tryb ręczny",
+  "input:mode:auto": "Tryb automatyczny",
+
+  "error:format": "Nieprawidłowy format wartości.",
+  "error:timeout:findFile": "Upłynął limit czasu odnajdywania pliku.",
+  "error:timeout:readFile": "Upłynął limit czasu odczytywania pliku.",
+  "error:notFound": "Nie znaleziono pliku konfiguracji.",
+  "error:findFile": "Nie udało się odnaleźć pliku konfiguracji.",
+  "error:findFile:duplicate": "Znaleziono więcej niż jedną konfigurację.",
+  "error:readFile": "Nie udało się odczytać pliku konfiguracji.",
+  "error:writeFile": "Nie udało się zapisać kopii konfiguracji.",
+  "error:xml:parse": "Nie udało się przetworzyć pliku konfiguracji.",
+  "error:xml:structure": "Nieprawidłowa struktura pliku konfiguracji.",
+  "error:data:gprs": "Nierozpoznana konfiguracja GPRS.",
+  "error:data": "Nieprawidłowa opcja: <code>{data}</code>",
+
+  "result:title": "Przebieg programowania"
+}
