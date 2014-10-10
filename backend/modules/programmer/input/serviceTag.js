@@ -101,7 +101,7 @@ module.exports = function setUpServiceTagInput(app, programmerModule)
         return error('data:configurationDesignation');
       }
 
-      var matches = orderData.configurationDesignation.match(/(?:GRN|ECO)([0-9]+)\/([0-9]{3})/);
+      var matches = orderData.configurationDesignation.match(/(?:GRN|ECO)([0-9]+)[-\s]*\/[-\s]*([0-9]{3})/);
 
       if (matches === null)
       {
