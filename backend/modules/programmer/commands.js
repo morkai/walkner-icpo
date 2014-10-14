@@ -44,15 +44,16 @@ module.exports = function setUpProgrammerCommands(app, programmerModule)
     }
 
     var statusProperty = property + 'Status';
+    var currentStatus = programmerModule.currentState[statusProperty];
     var changes = {};
 
     changes[property] = value;
 
-    if (value === programmerModule.currentState[property])
+    if (value === programmerModule.currentState[property] && currentStatus === 'loaded')
     {
       reply();
 
-      changes[statusProperty] = programmerModule.currentState[statusProperty];
+      changes[statusProperty] = currentStatus;
 
       return programmerModule.changeState(changes);
     }
