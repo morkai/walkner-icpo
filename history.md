@@ -1,4 +1,4 @@
-1.0.1 @ 2014-09-24
+1.0.1 @ 2014-10-12
 ==================
 
   * Changed the `configurationDesignation` option matching to allow `-` and whitespace
