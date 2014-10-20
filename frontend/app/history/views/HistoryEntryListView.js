@@ -20,7 +20,7 @@ define([
     },
 
     events: {
-      'click tr': function(e)
+      'click .list-item': function(e)
       {
         this.broker.publish('router.navigate', {
           url: this.collection.get(e.currentTarget.dataset.id).genClientUrl(),
