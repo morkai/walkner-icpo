@@ -285,10 +285,9 @@ module.exports = function program(app, programmerModule, done)
     {
       return this.skip('PROGRAMMER_FILE_UNSET');
     }
-// TODO: program
+
     var args = [
-      'simulate',
-      //'program',
+      'program',
       '-p', String(settings.get('daliPort') || 0),
       '-j', this.inputFilePath,
       '-c', programmerModule.config.outputFilePath
