@@ -52,6 +52,8 @@ module.exports = function program(app, programmerModule, done)
   {
     /*jshint validthis:true*/
 
+    programmerModule.changeState({progress: 1});
+
     if (programmerModule.cancelled)
     {
       return this.skip('CANCELLED');
@@ -76,6 +78,8 @@ module.exports = function program(app, programmerModule, done)
   function handleReadInputTemplateFileResultStep(err, inputTemplate)
   {
     /*jshint validthis:true*/
+
+    programmerModule.changeState({progress: 5});
 
     this.sub.cancel();
     this.sub = null;
@@ -138,6 +142,8 @@ module.exports = function program(app, programmerModule, done)
   function prepareInputFileStep()
   {
     /*jshint validthis:true*/
+
+    programmerModule.changeState({progress: 10});
 
     if (programmerModule.cancelled)
     {
@@ -244,6 +250,8 @@ module.exports = function program(app, programmerModule, done)
   function handlePrepareInputFileResultStep(err)
   {
     /*jshint validthis:true*/
+
+    programmerModule.changeState({progress: 20});
 
     if (programmerModule.cancelled)
     {
@@ -383,8 +391,14 @@ module.exports = function program(app, programmerModule, done)
           break;
         }
 
+        var percentage = parseInt(matches[1], 10);
+
+        programmerModule.changeState({
+          progress: 20 + Math.round(percentage * 45 / 100)
+        });
+
         programmerModule.log('PROGRAMMING_PROGRESS', {
-          percentage: parseInt(matches[1], 10)
+          percentage: percentage
         });
 
         found = true;
@@ -404,6 +418,7 @@ module.exports = function program(app, programmerModule, done)
       finalized = true;
 
       programmerModule.changeState({
+        progress: 65,
         output: output
       });
 
@@ -441,6 +456,8 @@ module.exports = function program(app, programmerModule, done)
   function hashOutputFileStep(err, outputFileContents)
   {
     /*jshint validthis:true*/
+
+    programmerModule.changeState({progress: 68});
 
     if (programmerModule.cancelled)
     {
@@ -485,6 +502,8 @@ module.exports = function program(app, programmerModule, done)
   {
     /*jshint validthis:true*/
 
+    programmerModule.changeState({progress: 70});
+
     if (programmerModule.cancelled)
     {
       return this.skip('CANCELLED');
@@ -514,6 +533,12 @@ module.exports = function program(app, programmerModule, done)
       programmerModule.currentState.serviceTag.substr(4) + '.xml',
       this.outputData
     );
+
+    this.verificationWatcher.progress = function(percentage)
+    {
+      programmerModule.changeState({progress: 70 + Math.round(percentage * 30 / 100)});
+    };
+
 
     this.sub = app.broker.subscribe(
       'programmer.cancelled',

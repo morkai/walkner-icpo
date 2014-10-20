@@ -18,6 +18,7 @@ HistoryEntry.prototype.toJSON = function()
 {
   return {
     _id: this._id,
+    progress: this.progress,
     serviceTag: this.serviceTag,
     serviceTagStatus: this.serviceTagStatus,
     driver: this.driver,
@@ -44,6 +45,7 @@ HistoryEntry.prototype.isProgramming = function()
 HistoryEntry.prototype.clear = function()
 {
   this._id = null;
+  this.progress = 0;
   this.serviceTag = null;
   this.serviceTagStatus = 'waiting';
   this.orderFilePath = null;
@@ -87,6 +89,7 @@ HistoryEntry.prototype.onProgramStart = function()
   this.output = null;
   this.inputFileHash = null;
   this.outputFileHash = null;
+  this.progress = 0;
 };
 
 HistoryEntry.prototype.save = function(done)

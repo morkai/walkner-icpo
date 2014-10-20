@@ -76,6 +76,7 @@ define([
         mode: null,
         program: null,
         cancel: null,
+        progress: null,
         inputs: null,
         serviceTag: null,
         quantity: null,
@@ -94,6 +95,7 @@ define([
       this.listenTo(this.model, 'change:gprsStatus', this.onInputStatusChange.bind(this, 'gprs'));
       this.listenTo(this.model, 'change:led', this.onInputValueChange.bind(this, 'led'));
       this.listenTo(this.model, 'change:ledStatus', this.onInputStatusChange.bind(this, 'led'));
+      this.listenTo(this.model, 'change:progress', this.onProgressChange);
 
       if (user.isLocal())
       {
@@ -141,6 +143,7 @@ define([
       this.$els.led = this.$els.inputs.filter('[name=led]');
       this.$els.program = this.$('.dashboard-input-program');
       this.$els.cancel = this.$('.dashboard-input-cancel');
+      this.$els.progress = this.$('.dashboard-input-progress');
       this.$els.mode = this.$('.dashboard-input-mode')
         .appendTo('body')
         .click(this.onModeClick.bind(this))
@@ -231,6 +234,7 @@ define([
 
       this.$els.program.toggle(!isProgramming);
       this.$els.cancel.toggle(isProgramming);
+      this.$els.progress.toggle(isProgramming);
     },
 
     toggleInputStatuses: function()
@@ -363,6 +367,14 @@ define([
     onInputStatusChange: function(inputProperty)
     {
       this.toggleInputStatus(inputProperty);
+    },
+
+    onProgressChange: function()
+    {
+      if (this.$els)
+      {
+        this.$els.progress.find('.progress-bar').css('width', this.model.get('progress') + '%');
+      }
     },
 
     onFormSubmit: function(e)

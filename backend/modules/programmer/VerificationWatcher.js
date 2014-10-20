@@ -7,7 +7,6 @@
 var path = require('path');
 var fs = require('fs');
 var moment = require('moment');
-var step = require('h5.step');
 
 module.exports = VerificationWatcher;
 
@@ -33,25 +32,20 @@ function VerificationWatcher(timeout, inputPath, successPath, errorPath, filenam
   this.outputData = outputData;
 
   this.done = null;
-  this.timer = null;
-  this.watchers = [];
+  this.timers = null;
+  this.watcherId = 0;
 }
 
 VerificationWatcher.prototype.destroy = function()
 {
-  if (this.timer !== null)
+  if (this.timers !== null)
   {
-    clearTimeout(this.timer);
-    this.timer = null;
-  }
-
-  if (Array.isArray(this.watchers))
-  {
-    this.watchers.forEach(function(watcher)
+    Object.keys(this.timers).forEach(function(watcherId)
     {
-      clearTimeout(watcher);
+      clearTimeout(watcherId);
     });
-    this.watchers = null;
+
+    this.timers = null;
   }
 
   this.outputData = null;
@@ -63,11 +57,24 @@ VerificationWatcher.prototype.cancel = function()
   this.finish('CANCELLED');
 };
 
+VerificationWatcher.prototype.progress = function(percentage)
+{
+  /*jshint unused:false*/
+};
+
 VerificationWatcher.prototype.start = function(done)
 {
+  this.progress(10);
+
   this.done = done;
-  this.timer = setTimeout(this.onTimeout.bind(this), this.timeout);
-  this.watchers = [];
+  this.timers = {
+    timeout: setTimeout(this.onTimeout.bind(this), this.timeout)
+  };
+
+  for (var i = 1; i <= 7; ++i)
+  {
+    this.timers['progress' + i] = setTimeout(this.progress.bind(this, 20 + i * 10), Math.round(this.timeout * (i / 8)));
+  }
 
   var watcher = this;
 
@@ -100,6 +107,8 @@ VerificationWatcher.prototype.watchPaths = function()
   {
     this.watchPath('error', path.join(this.errorPaths[i], this.filename));
   }
+
+  this.progress(20);
 };
 
 VerificationWatcher.prototype.watchPath = function(result, resultsPath)
@@ -124,14 +133,24 @@ VerificationWatcher.prototype.watchPath = function(result, resultsPath)
     }
     else
     {
-      watcher.watchers.push(setTimeout(watcher.watchPath.bind(watcher, result, resultsPath), 100));
+      var watcherId = ++watcher.watcherId;
+
+      watcher.timers[watcherId] = setTimeout(function()
+      {
+        if (watcher.done)
+        {
+          delete watcher.timers[watcherId];
+
+          watcher.watchPath(result, resultsPath);
+        }
+      }, 100);
     }
   });
 };
 
 VerificationWatcher.prototype.onTimeout = function()
 {
-  this.timer = null;
+  delete this.timers.timeout;
 
   this.finish('VERIFICATION_TIMEOUT');
 };

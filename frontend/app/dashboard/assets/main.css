@@ -157,12 +157,13 @@
 }
 .dashboard-input-cancel {
   display: none;
+  height: 53px;
 }
-.is-programming .dashboard-input-program {
+.dashboard-input-progress {
   display: none;
 }
-.is-programming .dashboard-input-cancel {
-  display: block;
+.dashboard-input-progress .progress-bar {
+  line-height: 20px;
 }
 .dashboard-result {
   overflow-y: hidden;
