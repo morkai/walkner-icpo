@@ -285,9 +285,10 @@ module.exports = function program(app, programmerModule, done)
     {
       return this.skip('PROGRAMMER_FILE_UNSET');
     }
-
+// TODO: program
     var args = [
-      'program',
+      'simulate',
+      //'program',
       '-p', String(settings.get('daliPort') || 0),
       '-j', this.inputFilePath,
       '-c', programmerModule.config.outputFilePath
@@ -518,14 +519,19 @@ module.exports = function program(app, programmerModule, done)
 
     programmerModule.log('COPYING_OUTPUT_FILE_SUCCESS');
 
-    if (!settings.get('verification'))
+    var skipVerification = !settings.get('verification');
+
+    if (skipVerification)
     {
-      return programmerModule.log('VERIFICATION_SKIPPED');
+      programmerModule.log('VERIFICATION_SKIPPED');
+    }
+    else
+    {
+      programmerModule.log('VERIFICATION_STARTED');
     }
 
-    programmerModule.log('VERIFICATION_STARTED');
-
     this.verificationWatcher = new VerificationWatcher(
+      skipVerification,
       settings.get('verificationTimeout'),
       settings.get('verificationInputPath'),
       settings.get('verificationSuccessPath'),
@@ -538,7 +544,6 @@ module.exports = function program(app, programmerModule, done)
     {
       programmerModule.changeState({progress: 70 + Math.round(percentage * 30 / 100)});
     };
-
 
     this.sub = app.broker.subscribe(
       'programmer.cancelled',

@@ -10,7 +10,7 @@ var moment = require('moment');
 
 module.exports = VerificationWatcher;
 
-function VerificationWatcher(timeout, inputPath, successPath, errorPath, filename, outputData)
+function VerificationWatcher(skip, timeout, inputPath, successPath, errorPath, filename, outputData)
 {
   var m = moment();
   var currentMonth = m.format('YYYY-MM');
@@ -18,6 +18,7 @@ function VerificationWatcher(timeout, inputPath, successPath, errorPath, filenam
   var nextMonth = m.add('days', 1).format('YYYY-MM');
   var nextDay = m.format('DD');
 
+  this.skip = skip;
   this.timeout = timeout;
   this.inputPath = inputPath;
   this.successPaths = [
@@ -85,6 +86,10 @@ VerificationWatcher.prototype.start = function(done)
       err.code = 'VERIFICATION_INPUT_FAILURE';
 
       watcher.finish(err);
+    }
+    else if (watcher.skip)
+    {
+      watcher.finish(null);
     }
     else
     {
