@@ -164,6 +164,7 @@ VerificationWatcher.prototype.finish = function(err)
 {
   var done = this.done;
 
+  this.progress(100);
   this.destroy();
 
   if (typeof done === 'function')
