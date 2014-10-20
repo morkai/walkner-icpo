@@ -1,3 +1,12 @@
+1.1.0 @ 2014-10-20
+
+  * Fixed a display error of the Error property showing `error:0` if the error code is
+    equal to a string `0`.
+  * Fixed an error when clicking on the No data row on the History list page.
+  * Changed the verification to be skipped after the programmer output file is copied
+    to the verification input directory and not before.
+  * Added a progress bar above the Cancel button on the Programmer page.
+
 1.0.2 @ 2014-10-14
 ==================
 
