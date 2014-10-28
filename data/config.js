@@ -17,6 +17,7 @@ config.programmer.outputFilePath = path.join(DATA_PATH, 'walkner-icpo-output.xml
 
 config.history.storagePath = config.programmer.storagePath;
 config.history.lastExportTimeFile = path.join(DATA_PATH, 'walkner-icpo-export.txt');
+config.history.exportLimit = 25;
 
 config.settings.settingsFile = path.join(DATA_PATH, 'walkner-icpo.json');
 config.settings.defaults.password = '1@3';

@@ -14,7 +14,8 @@ exports.DEFAULT_CONFIG = {
   sqlite3Id: 'sqlite3',
   settingsId: 'settings',
   featureDbPath: './',
-  lastExportTimeFile: './lastExportAt.txt'
+  lastExportTimeFile: './lastExportAt.txt',
+  exportLimit: 100
 };
 
 exports.start = function startProgrammerModule(app, module, done)

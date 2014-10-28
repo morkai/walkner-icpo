@@ -170,7 +170,8 @@ module.exports = function setUpRemoteExport(app, historyModule)
 
     var ctx = this;
     var next = this.next();
-    var sql = "SELECT * FROM historyEntries WHERE startedAt > $startedAt ORDER BY startedAt ASC";
+    var sql = "SELECT * FROM historyEntries WHERE startedAt > $startedAt ORDER BY startedAt ASC LIMIT "
+      + (historyModule.config.exportLimit + 1);
 
     db.all(sql, {$startedAt: this.lastExportTime}, function(err, rows)
     {
@@ -179,8 +180,15 @@ module.exports = function setUpRemoteExport(app, historyModule)
         return next(err);
       }
 
-      ctx.historyEntries = JSON.stringify(rows);
+      ctx.hasMore = rows.length === (historyModule.config.exportLimit + 1);
+
+      if (ctx.hasMore)
+      {
+        rows.pop();
+      }
+
       ctx.latestStartedAt = rows.length ? rows[rows.length - 1].startedAt : null;
+      ctx.historyEntries = JSON.stringify(rows);
       ctx.fileHashes = {};
 
       for (var i = 0, l = rows.length; i < l; ++i)
@@ -401,6 +409,13 @@ module.exports = function setUpRemoteExport(app, historyModule)
       historyModule.info("Finished exporting data to the remote server!");
     }
 
-    scheduleNextSync(!!err);
+    if (!err && this.hasMore)
+    {
+      setImmediate(syncNow);
+    }
+    else
+    {
+      scheduleNextSync(!!err);
+    }
   }
 };
