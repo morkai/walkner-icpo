@@ -53,7 +53,7 @@ module.exports = function setUpDriverInput(app, programmerModule)
             var values = value.Values[0].anyType;
 
             driverData.cloProfile.push({
-              hours: parseInt(values[columns.hours]._, 10),
+              hours: parseInt(values[columns.hours]._, 10) * 500,
               percentage: parseInt(values[columns.percentage]._, 10)
             });
           });
