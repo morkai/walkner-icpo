@@ -1,4 +1,12 @@
+1.1.1 @ 2014-11-28
+==================
+
+  * Changed the history entries exporting to be exported only 25 at once (and not all).
+  * Changed CLO profile parsing to multiply the hours value by 500 before handing
+    the JSON to the programmer.
+
 1.1.0 @ 2014-10-20
+==================
 
   * Fixed a display error of the Error property showing `error:0` if the error code is
     equal to a string `0`.
