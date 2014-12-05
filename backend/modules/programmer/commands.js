@@ -112,10 +112,17 @@ module.exports = function setUpProgrammerCommands(app, programmerModule)
 
   function program(reply)
   {
-    if (lodash.isFunction(reply))
+    if (!lodash.isFunction(reply))
     {
-      programmerModule.program(reply);
+      return;
     }
+
+    if (!programmerModule.isInputDataLoaded())
+    {
+      return reply();
+    }
+
+    programmerModule.program(reply);
   }
 
   function reset()

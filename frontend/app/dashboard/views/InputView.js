@@ -264,6 +264,8 @@ define([
       else if (newStatus === 'loaded')
       {
         $indicator.addClass('fa-smile-o');
+
+        this.checkAutoProgramStart();
       }
       else
       {
@@ -296,6 +298,17 @@ define([
         $status.data('bs.popover').tip().addClass('dashboard-input-error');
 
         $status.popover('show');
+      }
+    },
+
+    checkAutoProgramStart: function()
+    {
+      if (user.isLocal()
+        && this.mode === 'auto'
+        && !this.model.isProgramming()
+        && this.model.isInputDataLoaded())
+      {
+        this.program();
       }
     },
 
@@ -542,7 +555,7 @@ define([
 
     program: function()
     {
-      if (this.$els.program.prop('disabled'))
+      if (this.$els.program.prop('disabled') && this.mode !== 'auto')
       {
         return;
       }

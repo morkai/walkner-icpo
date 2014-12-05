@@ -50,6 +50,14 @@ exports.start = function startProgrammerModule(app, module)
 
   module.program = program.bind(null, app, module);
 
+  module.isInputDataLoaded = function()
+  {
+    return module.currentState.serviceTagStatus === 'loaded'
+      && module.currentState.driverStatus === 'loaded'
+      && module.currentState.gprsStatus === 'loaded'
+      && module.currentState.ledStatus === 'loaded';
+  };
+
   module.log = function(text, data)
   {
     if (!Array.isArray(module.currentState.log))
