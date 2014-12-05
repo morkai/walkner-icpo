@@ -124,9 +124,39 @@
 }
 .dashboard-input-status .fa-frown-o {
   color: #d2322d;
+  -moz-animation: spin 250ms linear 0s 1 reverse;
+  -webkit-animation: spin 250ms linear 0s 1 reverse;
+  animation: spin 250ms linear 0s 1 reverse;
 }
 .dashboard-input-status .fa-smile-o {
   color: #5cb85c;
+  -moz-animation: spin 250ms linear 0s 1;
+  -webkit-animation: spin 250ms linear 0s 1;
+  animation: spin 250ms linear 0s 1;
+}
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .dashboard-input .btn-block {
   margin-top: 0;
