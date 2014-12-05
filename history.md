@@ -1,3 +1,9 @@
+1.1.3 @ 2014-12-05
+==================
+
+  * Changed the result resetting to also occur before the first data input after
+    a finished programming.
+
 1.1.2 @ 2014-12-05
 ==================
 
