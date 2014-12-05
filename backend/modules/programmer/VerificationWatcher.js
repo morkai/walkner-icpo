@@ -41,9 +41,11 @@ VerificationWatcher.prototype.destroy = function()
 {
   if (this.timers !== null)
   {
+    var timers = this.timers;
+
     Object.keys(this.timers).forEach(function(watcherId)
     {
-      clearTimeout(watcherId);
+      clearTimeout(timers[watcherId]);
     });
 
     this.timers = null;
