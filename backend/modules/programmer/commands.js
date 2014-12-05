@@ -43,6 +43,8 @@ module.exports = function setUpProgrammerCommands(app, programmerModule)
       return reply(new Error('INPUT'));
     }
 
+    reset();
+
     var statusProperty = property + 'Status';
     var currentStatus = programmerModule.currentState[statusProperty];
     var changes = {};
