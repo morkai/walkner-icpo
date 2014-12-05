@@ -508,15 +508,15 @@ define([
       {
         $input = $target;
       }
-      else if (this.$els.driver.val().trim() === '')
+      else if (this.$els.driver.val().trim() === '' || this.model.isInputDataError('driver'))
       {
         $input = this.$els.driver;
       }
-      else if (this.$els.gprs.val().trim() === '')
+      else if (this.$els.gprs.val().trim() === '' || this.model.isInputDataError('gprs'))
       {
         $input = this.$els.gprs;
       }
-      else if (this.$els.led.val().trim() === '')
+      else if (this.$els.led.val().trim() === '' || this.model.isInputDataError('led'))
       {
         $input = this.$els.led;
       }

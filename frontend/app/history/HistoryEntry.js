@@ -41,6 +41,11 @@ define([
       return this.get(property + 'Status') === 'loading';
     },
 
+    isInputDataError: function(property)
+    {
+      return /^error/.test(this.get(property + 'Status'));
+    },
+
     pushLogEntry: function(logEntry)
     {
       var log = this.get('log');
