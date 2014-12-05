@@ -1,3 +1,11 @@
+1.1.2 @ 2014-12-05
+==================
+
+  * Fixed the programming not starting when all input data was loaded successfully
+    in the automatic mode.
+  * Changed the 12NC input data focusing to focus the next empty field OR the one
+    with an error.
+
 1.1.1 @ 2014-11-28
 ==================
 
