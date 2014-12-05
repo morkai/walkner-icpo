@@ -27,8 +27,6 @@ exports.start = function startProgrammerModule(app, module, done)
     throw new Error("sqlite3 module is required!");
   }
 
-  module.recent = [];
-
   module.createEntry = function()
   {
     return new HistoryEntry(sqlite3Module.db, app.broker.sandbox());
@@ -38,27 +36,5 @@ exports.start = function startProgrammerModule(app, module, done)
 
   app.onModuleReady(module.config.settingsId, setUpRemoteExport.bind(null, app, module));
 
-  app.broker.subscribe('programmer.finished', saveRecentEntry);
-
   setUpDb(sqlite3Module.db, done);
-
-  function saveRecentEntry(historyEntry)
-  {
-    module.recent.unshift({
-      _id: historyEntry._id,
-      _order: historyEntry.order ? historyEntry.order._id : null,
-      no: historyEntry.order ? historyEntry.order.no : null,
-      quantity: historyEntry.order ? historyEntry.order.quantity : null,
-      nc12: historyEntry.nc12,
-      finishedAt: historyEntry.finishedAt,
-      counter: historyEntry.counter,
-      result: historyEntry.result,
-      featureFileName: historyEntry.featureFileName
-    });
-
-    if (module.recent.length > 50)
-    {
-      module.recent.pop();
-    }
-  }
 };

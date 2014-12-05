@@ -147,14 +147,6 @@ module.exports = function setUpHistoryRoutes(app, historyModule)
     });
   });
 
-  express.get('/history;recent', function(req, res)
-  {
-    res.send({
-      totalCount: historyModule.recent.length,
-      collection: historyModule.recent
-    });
-  });
-
   express.get('/history/:id;orderData', downloadFileRoute.bind(null, 'order'));
   express.get('/history/:id;driverData', downloadFileRoute.bind(null, 'driver'));
   express.get('/history/:id;gprsData', downloadFileRoute.bind(null, 'gprs'));
