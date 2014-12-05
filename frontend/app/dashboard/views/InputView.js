@@ -496,6 +496,7 @@ define([
         return;
       }
 
+      var view = this;
       var $target = this.$(e.target);
       var $input = null;
       var nc12 = this.commandBuffer;
@@ -508,15 +509,15 @@ define([
       {
         $input = $target;
       }
-      else if (this.$els.driver.val().trim() === '' || this.model.isInputDataError('driver'))
+      else if (isValidField('driver'))
       {
         $input = this.$els.driver;
       }
-      else if (this.$els.gprs.val().trim() === '' || this.model.isInputDataError('gprs'))
+      else if (isValidField('gprs'))
       {
         $input = this.$els.gprs;
       }
-      else if (this.$els.led.val().trim() === '' || this.model.isInputDataError('led'))
+      else if (isValidField('led'))
       {
         $input = this.$els.led;
       }
@@ -525,6 +526,11 @@ define([
       {
         this.updateInputLength($input.val(nc12));
         this.inputValue($input.attr('name'));
+      }
+
+      function isValidField(name)
+      {
+        return !!view.model.get('result') || view.$els[name].val().trim() === '' || view.model.isInputDataError(name);
       }
     },
 
