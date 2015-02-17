@@ -1,7 +1,7 @@
 {
   "guid": "A6B98DDC-E918-46A9-86AA-56D0B6503DE1",
   "name": "walkner-icpo",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Overlay application for IPT CityTouch Programmer.",
   "license": "CC BY-NC-SA 4.0",
   "homepage": "https://github.com/morkai/walkner-icpo",

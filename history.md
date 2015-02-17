@@ -1,3 +1,10 @@
+1.1.5 @ 2015-02-17
+==================
+
+  * Added a single spin animation to status indicators when entering error or loaded states.
+  * Changed the command buffer recognition to be case-insensitive.
+  * Updated Font Awesome to v4.2.0.
+
 1.1.4 @ 2014-12-05
 ==================
 
