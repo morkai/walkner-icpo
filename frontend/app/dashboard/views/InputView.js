@@ -464,13 +464,13 @@ define([
         e.preventDefault();
       }
 
-      if (/^P000[0-9]{12}$/.test(this.commandBuffer))
+      if (/^P000[0-9]{12}$/i.test(this.commandBuffer))
       {
         e.preventDefault();
 
         this.handleServiceTagCommand();
       }
-      else if (/^[0-9A-Z]{6,25}$/.test(this.commandBuffer))
+      else if (/^[0-9A-Z]{6,25}$/i.test(this.commandBuffer))
       {
         e.preventDefault();
 
@@ -485,7 +485,7 @@ define([
         return;
       }
 
-      this.$els.serviceTag.val(this.commandBuffer);
+      this.$els.serviceTag.val(this.commandBuffer.toUpperCase());
       this.inputValue('serviceTag');
     },
 
